@@ -1,6 +1,1 @@
-class Passenger(name: String, val floor: Int, val target: Int) {
-    fun emulate() {
-
-    }
-
-}
+data class Passenger(val name: String, val floor: Int, val target: Int)
