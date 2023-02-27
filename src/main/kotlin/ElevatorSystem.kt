@@ -7,4 +7,8 @@ object ElevatorSystem {
 
     }
 
+    fun request(number: Int, direction: Direction) {
+
+    }
+
 }
