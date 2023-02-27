@@ -1,0 +1,3 @@
+interface FloorButton {
+    fun click()
+}
