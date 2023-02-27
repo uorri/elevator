@@ -1,7 +1,5 @@
-import java.util.concurrent.locks.Lock
+class Notifier() {
 
-class Notifier(private val lock: Lock) {
-
-    val conditions = Array(25) { LazyCondition(lock) }
+    val barriers = Array(25) { LazyBarrier() }
 
 }
