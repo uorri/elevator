@@ -58,7 +58,7 @@ class ElevatorTest {
     fun onePassengerTest() {
         val passenger = PassengerGenerator.getPassenger(passengerName, 3, 8)
         executorService.submit { PassengerEmulator.emulate(passenger) }.get()
-        assertTrue { passenger.floor == passenger.target }
+        assertTrue { passenger.sourceFloorNum == passenger.targetFloorNum }
     }
 
     @Test
@@ -67,7 +67,7 @@ class ElevatorTest {
             passengerName, Building.firstFloor, Building.lastFloor
         )
         executorService.submit { PassengerEmulator.emulate(passenger) }.get()
-        assertTrue { passenger.floor == passenger.target }
+        assertTrue { passenger.sourceFloorNum == passenger.targetFloorNum }
     }
 
     @Test
@@ -84,8 +84,8 @@ class ElevatorTest {
             countDownLatch.countDown()
         }
         countDownLatch.await()
-        assertTrue { passenger1.floor == passenger1.target }
-        assertTrue { passenger2.floor == passenger2.target }
+        assertTrue { passenger1.sourceFloorNum == passenger1.targetFloorNum }
+        assertTrue { passenger2.sourceFloorNum == passenger2.targetFloorNum }
     }
 
     @Test
@@ -103,8 +103,8 @@ class ElevatorTest {
             countDownLatch.countDown()
         }
         countDownLatch.await()
-        assertTrue { passenger1.floor == passenger1.target }
-        assertTrue { passenger2.floor == passenger2.target }
+        assertTrue { passenger1.sourceFloorNum == passenger1.targetFloorNum }
+        assertTrue { passenger2.sourceFloorNum == passenger2.targetFloorNum }
     }
 
     @Test
@@ -122,8 +122,8 @@ class ElevatorTest {
             countDownLatch.countDown()
         }
         countDownLatch.await()
-        assertTrue { passenger1.floor == passenger1.target }
-        assertTrue { passenger2.floor == passenger2.target }
+        assertTrue { passenger1.sourceFloorNum == passenger1.targetFloorNum }
+        assertTrue { passenger2.sourceFloorNum == passenger2.targetFloorNum }
     }
 
     @Test
@@ -141,8 +141,8 @@ class ElevatorTest {
             countDownLatch.countDown()
         }
         countDownLatch.await()
-        assertTrue { passenger1.floor == passenger1.target }
-        assertTrue { passenger2.floor == passenger2.target }
+        assertTrue { passenger1.sourceFloorNum == passenger1.targetFloorNum }
+        assertTrue { passenger2.sourceFloorNum == passenger2.targetFloorNum }
     }
 
 
@@ -162,8 +162,8 @@ class ElevatorTest {
             countDownLatch.countDown()
         }
         countDownLatch.await()
-        assertTrue { passenger1.floor == passenger1.target }
-        assertTrue { passenger2.floor == passenger2.target }
+        assertTrue { passenger1.sourceFloorNum == passenger1.targetFloorNum }
+        assertTrue { passenger2.sourceFloorNum == passenger2.targetFloorNum }
     }
 
     @Test
@@ -186,7 +186,7 @@ class ElevatorTest {
         }
         countDownLatch.await()
         for (passenger in passengers) {
-            assertTrue { passenger.floor == passenger.target }
+            assertTrue { passenger.sourceFloorNum == passenger.targetFloorNum }
         }
 
     }
