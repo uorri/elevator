@@ -7,4 +7,4 @@
 <h4>Simulation of the interaction of an elevator and passengers in a building.</h4>
 
 ## Requirements
-* Java >= 19
+* JDK >= 19
