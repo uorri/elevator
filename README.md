@@ -5,3 +5,6 @@
 # Elevator
 
 <h4>Simulation of the interaction of an elevator and passengers in a building.</h4>
+
+## Requirements
+* JDK >= 19
