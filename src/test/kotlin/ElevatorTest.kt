@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import passenger.Passenger
-import passenger.PassengerEmulator
+import emulator.PassengerEmulator
 import passenger.PassengerGenerator
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit.MILLISECONDS
@@ -85,7 +85,7 @@ class ElevatorTest {
     }
 
     @Test
-    fun `Passengers call the elevator on the same floor`() {
+    fun `Elevator is called on the same floor`() {
         val sourceFloor = 18
         val passenger1 = getPassenger(sourceFloor, 1)
         val passenger2 = getPassenger(sourceFloor, 5)
@@ -166,13 +166,9 @@ class ElevatorTest {
             )
         }
         initPassengerLatch(passengers.size)
-        for (passenger in passengers) {
-            launchPassengerThread(passenger)
-        }
+        passengers.forEach { launchPassengerThread(it) }
         passengerLatch.await()
-        for (passenger in passengers) {
-            assertTrue { passenger.isArrived() }
-        }
+        passengers.forEach { assertTrue { it.isArrived() } }
     }
 
     private fun getPassenger(sourceFloor: Int, targetFloor: Int) =

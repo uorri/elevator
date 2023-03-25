@@ -1,5 +1,5 @@
 package event
 
-data class PassengerListener(override val floorNum: Int, val f: () -> Unit) : Listener {
-    override fun onEvent() = f()
+data class PassengerListener(override val floorNum: Int, val doOnEvent: () -> Unit) : Listener {
+    override fun onEvent() = doOnEvent()
 }

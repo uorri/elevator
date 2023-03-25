@@ -149,6 +149,10 @@ class ElevatorController(private val elevator: Elevator) {
         elevator.position = 1
     }
 
+    fun idle() {
+        changeStateTo(IDLE)
+    }
+
     val stopHistory = mutableListOf<Int>()
 
 }

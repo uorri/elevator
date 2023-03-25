@@ -7,16 +7,17 @@ import java.util.concurrent.Executors
 
 object ElevatorSystem {
     private lateinit var elevatorService: ExecutorService
-    private var controller: ElevatorController = ElevatorController(Building.elevator)
+    private var controller = ElevatorController(Building.elevator)
 
     fun start() {
-        val factory = Thread.ofVirtual().name("Thread Elevator").factory()
-        elevatorService = Executors.newSingleThreadExecutor(factory)
+        elevatorService = Executors.newSingleThreadExecutor(
+            Thread.ofVirtual().name("Thread Elevator").factory()
+        )
         elevatorService.submit { controller.start() }
     }
-
     fun shutdown() {
-        controller.stopHistory.clear()
+        getStopHistory().clear()
+        controller.idle()
         elevatorService.shutdownNow()
     }
     fun request(request: Request) = controller.outsideRequest(request)

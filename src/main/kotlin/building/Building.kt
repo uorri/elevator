@@ -41,19 +41,19 @@ object Building {
         }
     }
 
-    fun movePassengerFromFloorToElevator(passenger: Passenger): Boolean {
-        if (elevator.position != passenger.sourceFloorNum) { return false }
-        getFloor(passenger.sourceFloorNum).removePassenger(passenger)
-        elevator.add(passenger)
-        Logger.info { "${passenger.name} entered the elevator." }
+    fun Passenger.moveFromFloorToElevator(): Boolean {
+        if (elevator.position != sourceFloorNum) { return false }
+        getFloor(sourceFloorNum).removePassenger(this)
+        elevator.add(this)
+        Logger.info { "$name entered the elevator." }
         return true
     }
 
-    fun movePassengerFromElevatorToFloor(passenger: Passenger): Boolean {
-        if (elevator.position != passenger.targetFloorNum) { return false }
-        elevator.remove(passenger)
-        getFloor(passenger.targetFloorNum).addPassenger(passenger)
-        Logger.info { "${passenger.name} got off the elevator." }
+    fun Passenger.moveFromElevatorToFloor(): Boolean {
+        if (elevator.position != targetFloorNum) { return false }
+        elevator.remove(this)
+        getFloor(targetFloorNum).addPassenger(this)
+        Logger.info { "$name got off the elevator." }
         return true
     }
 
